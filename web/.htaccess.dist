@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	# app environment
+	SetEnv APP_ENV prod
+	SetEnv APP_DEBUG 0
+	SetEnv APP_CACHE 1
+
+	# www beautifier
+	RewriteCond %{HTTP_HOST} !^www\.
+	RewriteRule ^/?(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+	# use front controller if not a static file
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^.*$ /index.php [L]
+
+	# use front controller for directories and hidden files
+	RewriteRule ^(.*/)?\. /index.php [L]
+
+</IfModule>
