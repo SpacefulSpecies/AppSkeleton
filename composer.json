@@ -1,0 +1,16 @@
+{
+    "name": "vendor-name/project-name",
+    "type": "project",
+
+    "autoload": {
+        "psr-4": {
+            "VendorName\\ProjectName\\": ["src/", "tests/"]
+        }
+    },
+
+    "require": {
+        "species/app": "^0.0.1",
+
+        "php": "^7.1"
+    }
+}
