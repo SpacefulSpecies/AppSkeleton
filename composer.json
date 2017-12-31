@@ -1,5 +1,5 @@
 {
-    "name": "vendor-name/project-name",
+    "name": "species/app-skeleton",
     "type": "project",
 
     "autoload": {
