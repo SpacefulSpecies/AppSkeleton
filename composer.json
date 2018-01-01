@@ -9,7 +9,7 @@
     },
 
     "require": {
-        "species/app": "^0.1.0",
+        "species/app": "^0.1.1",
 
         "php": "^7.1"
     }
