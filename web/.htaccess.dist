@@ -1,20 +1,27 @@
+<IfModule mod_headers.c>
+	Header unset 'X-Powered-By'
+</IfModule>
+
 <IfModule mod_rewrite.c>
 	RewriteEngine On
 
-	# app environment
-	SetEnv APP_ENV prod
-	SetEnv APP_DEBUG 0
-	SetEnv APP_CACHE 1
+	# Force https
+	#RewriteCond %{HTTPS} off
+	#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-	# www beautifier
-	RewriteCond %{HTTP_HOST} !^www\.
-	RewriteRule ^/?(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+	# Force www
+	#RewriteCond %{HTTP_HOST} !^www\.
+	#RewriteRule ^(.*)$ %{REQUEST_SCHEME}://www.%{HTTP_HOST}/$1 [R=301,L]
 
-	# use front controller if not a static file
+	# Remove www
+	#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+	#RewriteRule ^(.*)$ %{REQUEST_SCHEME}://%1%{REQUEST_URI} [R=301,L]
+
+	# Use front controller if not a static file
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteRule ^.*$ /index.php [L]
 
-	# use front controller for directories and hidden files
+	# Use front controller for directories and hidden files
 	RewriteRule ^(.*/)?\. /index.php [L]
 
 </IfModule>
