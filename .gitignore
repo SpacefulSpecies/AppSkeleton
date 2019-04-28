@@ -1,4 +1,10 @@
-/vendor/
-/var/
+# libs
+/node_modules
+/vendor
+
+# app
+/config/*
+!/config/*.php
+/var
+/.env
 /web/.htaccess
-/config/*/
